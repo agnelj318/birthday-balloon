@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to top, #fff0f5, #ffe4e1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  position: relative;
+}
+
+#balloon {
+  width: 150px;
+  height: 200px;
+  background: radial-gradient(circle, #ff4d6d 0%, #ff1c44 100%);
+  border-radius: 70% 70% 60% 60%;
+  position: relative;
+  animation: pulse 2s infinite;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#balloon::after {
+  content: "";
+  width: 2px;
+  height: 50px;
+  background: #444;
+  position: absolute;
+  bottom: -50px;
+}
+
+.text {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  animation: floatText 1.5s infinite alternate ease-in-out;
+}
+
+#message {
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #d6336c;
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes floatText {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
