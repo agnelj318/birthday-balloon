@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    #balloon {
+      width: 120px;
+      height: 160px;
+      background: radial-gradient(circle at 30% 30%, #ff4e50, #f9d423);
+      border-radius: 60% 60% 60% 60%;
+      position: relative;
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2em;
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+    }
+    #string {
+      width: 2px;
+      height: 50px;
+      background: #666;
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    #message {
+      display: none;
+      font-size: 3em;
+      color: #d63447;
+      position: absolute;
+      text-align: center;
+      z-index: 10;
+      text-shadow: 2px 2px #fff;
+    }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      animation: confetti-fall 2s linear forwards;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(300px) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="message">🎉 Happy Birthday! 🎉</div>
+  <div id="balloon" onclick="popBalloon()">Click Me
+    <div id="string"></div>
+  </div>
+  <script>
+    function popBalloon() {
+      const balloon = document.getElementById('balloon');
+      const message = document.getElementById('message');
+      balloon.style.display = 'none';
+      message.style.display = 'block';
+
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.top = Math.random() * window.innerHeight / 2 + 'px';
+        confetti.style.backgroundColor = ['#f94144', '#f3722c', '#f8961e', '#90be6d', '#577590'][Math.floor(Math.random() * 5)];
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 2000);
+      }
+    }
+  </script>
+</body>
+</html>
